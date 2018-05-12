@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <title><block name="title"></block> - {$Think.lang.title}</title>
+    <include file="Layout:head"/>
+    <link href="__CSS__/lib/pintuer/pintuer.css" rel="stylesheet"/>
+    <link href="__CSS__/common/admin/admin.css" rel="stylesheet"/>
+    <block name="css"></block>
+  </head>
+  <body>
+    <a id="wap-topback" href="javascript:void(0);" class="win-backtop button button-big bg-main radius-circle show-l" title="返回顶部">
+      <span class="icon-arrow-up"></span>
+    </a>
+    <div id="top-sidbar" class="bg-black text-center">
+      <div id="top-sidbar-menubtn">
+        <a href="javascript:void(0);" class="button text-main border-black icon-bars"></a>
+      </div>
+      <div id="top-sidbar-bread">
+        <ul class="bread">
+          <li><a href="/Admin" class="icon-home text-white"></a></li>
+          <block name="bread"></block>
+        </ul>
+      </div>
+    </div>
+    <include file="Layout:left-sidbar"/>
+    <div id="mainer">
+      <block name="content"></block>
+    </div>
+    <include file="Layout:footer"/>
+    <script src="__JS__/lib/jquery/jquery-1.11.0.min.js"></script>
+    <script src="__JS__/lib/pintuer/pintuer.js"></script>
+    <script src="__JS__/lib/respond/respond-1.4.2.min.js"></script>
+    <script src="__JS__/common/admin/admin.js"></script>
+    <block name="js"></block>
+  </body>
+</html>

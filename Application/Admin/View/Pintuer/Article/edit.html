@@ -1,0 +1,67 @@
+<extend name="Layout:base"/>
+<block name="css">
+  <link rel="stylesheet" href="__CSS__/common/admin/article.edit.css"/>
+</block>
+<block name="title"><?php echo isset( $article['id'] ) ? '编辑' : '新建';?>文章</block>
+<block name="bread">
+  <li><a href="/Admin/Article/list" class="text-white">文章</a></li>
+  <li><?php echo isset( $article['id'] ) ? '编辑' : '新建';?></li>
+</block>
+<block name="content">
+  <div class="panel">
+    <div class="panel-head bg-main"><?php echo isset( $article['id'] ) ? '编辑' : '新建';?>文章</div>
+    <div class="panel-body bg-white">
+      <form method="post" rel="form" action="/Admin/Article/save">
+        <div class="form-group">
+          <div class="label"><span class="text-red icon-asterisk"></span><label for="title">标题</label></div>
+          <div class="field">
+            <input type="text" class="input" id="title" name="form[title]" placeholder="标题" value="<?php echo $article['title'];?>"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label"><span class="text-red icon-asterisk"></span><label for="alias">别名</label></div>
+          <div class="field">
+            <input type="text" class="input" id="alias" name="form[alias]" placeholder="别名" 
+              value="<?php echo $article['alias'];?>" <?php echo $article['id']>0 ? 'readonly="true"' : '';?>/>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label"><span class="text-red icon-asterisk"></span><label for="category_id">所属分类</label></div>
+          <div class="field">
+            <select class="input" id="category_id" name="form[category_id]">
+              <option value="0">选择分类</option>
+              <?php foreach($categorys as $category ):?>
+              <option <?php echo $category['id']==$article['category_id'] ? 'selected' : '';?> value="<?php echo $category['id'];?>"><?php echo $category['name'];?></option>
+              <?php endforeach;?>
+            </select>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label"><span class="text-red icon-asterisk"></span><label for="tags">标签</label></div>
+          <div class="field">
+            <input type="text" class="input" id="tags" name="form[tags]" placeholder="标签" value="<?php echo $article['tags'];?>"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label"><span class="text-red icon-asterisk"></span><label for="content">内容</label></div>
+          <div class="field">
+            <textarea id="content" name="form[content]"><?php echo $article['content'];?></textarea>
+          </div>
+        </div>
+        <input type="hidden" id="id" name="form[id]" value="<?php echo $article['id'];?>"/>
+        <input type="hidden" rel="status" name="form[status]"/>
+      </form>
+    </div>
+    <div class="panel-foot text-center">
+      <button type="button" rel="submit" class="button bg-main">发 布</button>
+      <button type="button" rel="draft" class="button bg-sub">存草稿</button>
+    </div>
+  </div>
+</block>
+<block name="js">
+  <script src="__JS__/lib/ueditor/ueditor.config.js"></script>
+  <script src="__JS__/lib/ueditor/ueditor.all.min.js"> </script>
+  <script src="__JS__/lib/ueditor/lang/zh-cn/zh-cn.js"></script>
+  <script src="__JS__/common/admin/jquery.tags.js"></script>
+  <script src="__JS__/common/admin/article.edit.js"></script>
+</block>

@@ -1,0 +1,34 @@
+<div id="left-sidbar" class="bg-main">
+  <div class="logo">
+    <a href="/" title="{$Think.lang.title}">
+      <img alt="{$Think.lang.title}" class="img-responsive radius-circle rotate-hover" src="__IMG__/logo.png"/>
+    </a>
+  </div>
+  <div class="logo-title text-white text-center">
+    <h1>
+      <a href="/aboutme.html" class="text-white" title="关于ZYaller">{$Think.lang.name}</a>
+      <a href="javacript:void(0);" id="wap-switch-search" class="icon-search text-white"></a>
+    </h1>
+  </div>
+  <div id="ft-search" class="text-center margin-big-top margin-big-bottom padding-big-left padding-big-right">
+    <form action="/" method="get" id="ft-search-form">
+      <div class="field field-icon-right">
+        <a href="javascript:void(0);" id="ft-search-submit"><span class="icon icon-search"></span></a>
+        <input type="text" class="input radius-rounded" name="form[title]" value="<?php echo $listFilter['title'];?>" placeholder="关键词">
+      </div>
+    </form>
+  </div>
+  <div id="left-sidbar-nav" class="text-center margin-big-top padding-big-left padding-big-right">
+    <button class="button button-big icon-navicon" data-target="#ls-nav"></button>
+    <ul class="nav nav-menu nav-pills nav-navicon border-black" id="ls-nav">
+      <li class="margin-big-bottom <?php echo 0==$listFilter['category_id'] && 0==$listFilter['tags'] ? 'active' : '';?>">
+        <a class="text-white" href="/">首 页</a>
+      </li>
+      <?php foreach($menus as $menu){?>
+      <li class="margin-big-bottom <?php echo $listFilter['category_id']==$menu['id'] ? 'active' : '';?>">
+        <a class="text-white" href="/<?php echo $menu['alias'];?>.html"><?php echo $menu['name'];?></a>
+      </li>
+      <?php }?>
+    </ul>
+  </div>
+</div>

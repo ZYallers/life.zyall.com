@@ -1,0 +1,95 @@
+/** 全局 */
+body{margin: 0;padding: 0;background: #d9d9d9;font-size: 16px;font-style: normal;font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;}
+.overhide{overflow: hidden;white-space: nowrap;text-overflow: ellipsis; }
+.text-gray2{color: #bfbfbf!important; }
+/* 头部 */
+#wap-topback{position: fixed;padding: 12px 15px;bottom: 10px;right: 10px;z-index: 99999;display: none;}
+/** 左侧边栏 */
+#left-sidbar{position: fixed;width: 250px;height: 100%;top: 0px;left: 0px;  }
+#left-sidbar .logo{margin-top: 20px;padding: 20px;}
+#left-sidbar .logo-title{font-size: 28px;text-shadow: 2px 2px 0 rgba(0,0,0,0.2);}
+#toolbar{width: 60px;height: 100%;position: fixed;top: 0;left: 250px; }
+#toolbar #mini-logo{display: none;margin-top: 20px;}
+#toolbar #mini-logo > img{width: 40px;}
+#web-backtop{position: absolute;bottom: 5px;left: 5px;}
+#wap-switch-search{display: none;}
+@media (max-width: 1079px) and (min-width: 761px){
+}
+@media (max-width:760px){
+  #left-sidbar{height: 235px;width: 100%;position: static;box-shadow: 0px 2px 6px rgba(100,100,100,0.3);}
+  #left-sidbar .logo{margin: 0px 0px 10px 0px;padding: 10px 0px 0px 0px;}
+  #left-sidbar .logo a{display: block;text-align: center;}
+  #wap-switch-search{display: inline-block;}
+  #left-sidbar .logo img{width: 180px;display: inline-block;margin: 0 auto;padding: 0px;}
+  #left-sidbar #ft-search{margin-top: 10px;padding: 0px 10px;display: none;}
+  #left-sidbar #left-sidbar-nav{position: absolute;top: 0px;}
+  #left-sidbar #left-sidbar-nav ul{background: #000;border-radius: 5px;font-size: 14px;padding: 5px;box-shadow: 0px 2px 6px rgba(100,100,100,0.3);}
+  #left-sidbar #left-sidbar-nav ul li{margin-bottom: 5px;}
+  #left-sidbar #left-sidbar-nav ul li.active a{background: #fff;color: #000;font-weight: bold;}
+}
+
+/** 主体内容列表 */
+/**/
+
+/** 右边侧边栏 */
+#right-sidbar{position: absolute;width: 250px;top: 0px;right:0px;margin: 40px 20px 40px 20px; }
+#right-sidbar .panel{border: none;box-shadow: 0px 2px 6px rgba(100,100,100,0.3);}
+#panel-new,#panel-hot,#panel-random,#cy-reping,#panel-tags,#panel-links,#cy-qing,#index-adv{margin-bottom: 30px;}
+#right-sidbar .panel-body{padding: 0px; }
+#right-sidbar .list-link{border-top-left-radius: 0px; border-top-right-radius: 0px;border: none;}
+#right-sidbar .list-link img{width: 32px;height: 32px;opacity: 1;}
+#right-sidbar .list-link img:hover{opacity: 0.9;}
+#right-sidbar .panel-head{cursor: pointer;padding: 15px;border-bottom: none; }
+#right-sidbar .panel-head > span.title {font-size: 16px;font-weight: bold;}
+/** 最新评论 */
+#cy-reping{}
+#cy-reping .panel-body{border-radius: 0 0 4px 4px;}
+#cy-reping .reping-header{display: none;}
+#cy-reping .reping-list{padding: 0px;}
+#cy-reping .reping-list .list-item{margin: 0!important;padding: 10px 15px!important;border-bottom: solid 1px #ddd!important;}
+#cy-reping .reping-list .list-item .reping-avatar{width: 32px;}
+#cy-reping .reping-list .list-item .contavatar{padding: 0 0 0 40px;}
+#cy-reping .reping-list .list-item .reping-nickname{color: #999;font-size: 16px;font-style: oblique;}
+#cy-reping .reping-list .list-item .reping-content{color: #000;font-size: 14px;word-break: break-word;}
+#cy-reping .reping-list .list-item .reping-title{overflow: hidden;white-space: nowrap;text-overflow: ellipsis;margin-top: 5px;}
+#cy-reping .reping-list .list-item .reping-title > a{color: #0a8;font-size: 14px;}
+#cy-reping .reping-list .list-item .reping-title > a:hover{color: #0ab;}
+#cy-reping .reping-list .list-item .reping-avatar img{width: 32px;height: 32px;border-radius: 50%;opacity: 1;}
+#cy-reping .reping-list .list-item .reping-avatar img:hover{opacity: 0.9;}
+/** 热门标签 */
+#panel-tags .panel-body,#panel-links .panel-body,#index-adv .panel-body{padding: 15px;overflow: hidden;border-radius: 0px 0px 4px 4px; }
+#panel-tags .panel-body > a{float: left;margin-bottom: 5px;margin-right: 5px; }
+/** 友情链接 */
+#panel-links .panel-body > a{float: left;margin-bottom: 5px;margin-right: 5px;}
+#panel-links .panel-body > a > img{width: 38px;height: 38px;padding: 0px;border: 2px #f5f5f5 solid;background: #fff;}
+#panel-links .panel-body > a > img:hover{border-color: #0a8;}
+/** 站点点评 */
+#cy-qing{}
+#cy-qing .panel-body{border-radius: 0 0 4px 4px;}
+#cy-qing .cy-wrapper{padding: 15px;}
+#cy-qing .cy-wrapper > .qing-tip{margin: 0px;padding-bottom: 5px;}
+#cy-qing .cy-wrapper > .qing-tip > span{padding-right: 2px;font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;}
+#cy-qing .cy-wrapper > .qing-list > .qing-item{border: 1px solid #0a8;background-color: #fff;color: #0a8;border-radius: 2em;padding-left: 1em;padding-right: 1em;}
+#cy-qing .cy-wrapper > .qing-list > .qing-item:hover{color: #fff;background-color: #0a8;}
+#cy-qing .cy-wrapper > .qing-input{margin: 5px 0 0px 0;}
+#cy-qing .cy-wrapper > .qing-input > input{border: 1px solid #ccc;border-radius: 4px 0 0 4px;width: 60%;line-height: 20px;}
+#cy-qing .cy-wrapper > .qing-input > button{border: 1px solid #0a8;height: 31px;background-color: #0a8;color: #fff;border-radius: 0 4px 4px 0;margin-left: -4px;}
+#cy-qing .cy-wrapper > .qing-input > button:hover{border-color: #0ab;background-color: #0ab;}
+
+@media (max-width: 1079px) and (min-width: 761px){
+  #right-sidbar{position: relative;margin-left: 330px;margin-top: 0px;margin-bottom: 30px;width: auto;}
+}
+@media (max-width:760px){
+  #right-sidbar{position: relative;width: auto;margin: 10px 10px 20px 10px; }
+  #panel-new,#panel-hot,#panel-random,#cy-reping,#panel-tags,#panel-links,#cy-qing,#index-adv{margin-bottom: 20px;}
+}
+/** 尾部 */
+#footer{padding: 5px 0px; margin: 0px 290px 40px 330px;width: auto;box-shadow: 0px 2px 6px rgba(100,100,100,0.3);border: none;}
+#footer img.rec-auth{height: 32px;border-radius: 4px;opacity: 0.5;}
+#footer img.rec-auth:hover{opacity: 1;}
+@media (max-width: 1079px) and (min-width: 761px){
+  #footer{margin-right: 20px;margin-bottom: 40px;}
+}
+@media (max-width:760px){
+  #footer{margin: 0px 10px 20px 10px; }
+}

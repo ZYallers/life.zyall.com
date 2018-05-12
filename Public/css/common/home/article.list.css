@@ -1,0 +1,34 @@
+#mainer-notice{border-color: #fff;box-shadow: 0px 2px 6px rgba(100,100,100,0.3);margin-bottom: 30px;}
+#mainer-notice .panel-body{padding: 5px 15px;font-size: 14px;}
+#mainer{width: auto;height: auto;margin: 40px 290px 0px 330px; }
+#mainer-nav{padding: 10px 0px;box-shadow: 0px 2px 6px rgba(100,100,100,0.3);border: none;}
+#mainer-nav-ul{margin-right: 5px;}
+#mainer-list > .panel{box-shadow: 0px 2px 6px rgba(100,100,100,0.3);border: none;margin-bottom: 30px;}
+#mainer-list > .panel > .panel-body{border-radius: 4px;background: #fff;padding: 15px;}
+#mainer-list > .panel > .panel-body > .record{padding: 0px;color: #bfbfbf;margin-bottom: 20px;}
+#mainer-list > .panel > .panel-body > h2{font-weight: bold;font-size: 24px;margin-bottom: 20px;}
+#mainer-list > .panel > .panel-body > .element > a{display: block;margin-bottom: 5px;max-height: 320px;overflow: hidden;border-radius: 6px;}
+#mainer-list > .panel > .panel-body > .element > a > img{width: 100%;opacity: 1;padding: 0;margin: 0;transform: scale(1);transition: transform 1s ease 0s;}
+#mainer-list > .panel > .panel-body > .element > a > img:hover{opacity: 0.9;transform: scale(1.05);}
+#mainer-list > .panel > .panel-body > .element > .summary{line-height: 26px;margin-bottom: 20px;word-break: break-word;}
+#mainer-list > .panel > .panel-body >.tags{color: #bfbfbf;}
+#mainer-list > .panel > .panel-body >.tags >a{color: #bfbfbf;padding: 5px;border-radius: 4px;}
+#mainer-list > .panel > .panel-body >.tags >a:hover{color: #fff;background: #d9d9d9;transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1) 0s;}
+
+#pager{margin-bottom: 30px;text-align: center;}
+#pager > .pagination > li {border: none;box-shadow: 0px 2px 6px rgba(100,100,100,0.3);}
+
+@media (max-width: 1079px) and (min-width: 761px){
+  #mainer{margin-right: 20px;}
+}
+@media (max-width:760px){
+  #mainer-notice{margin-bottom: 20px;}
+  #mainer{margin: 20px 10px 0px 10px;}
+  #mainer-list .panel{margin-bottom: 20px;}
+  #mainer-list > .panel > .panel-body > .record{margin-bottom: 10px;font-size: 14px;}
+  #mainer-list > .panel > .panel-body > h2{font-size: 18px;margin-bottom: 10px;}
+  #mainer-list > .panel > .panel-body > .element > .summary{margin-bottom: 10px;font-size: 14px;line-height: 22px;}
+  #mainer-list > .panel > .panel-body >.tags{font-size: 14px;}
+  #mainer-list > .panel > .panel-body >.tags >a{padding: 2px 5px;}
+  #pager{margin-bottom: 20px;}
+}

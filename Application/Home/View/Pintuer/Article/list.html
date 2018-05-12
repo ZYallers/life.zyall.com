@@ -1,0 +1,90 @@
+<extend name="Layout:base"/>
+<block name="title">
+  <?php if( empty( $navHead ) ):?>
+  {$Think.lang.title}
+  <?php else:?>
+  <?php 
+  $navType = $navValue = $listTitle = '';
+  $navHeadExplode = explode( '-', $navHead ); 
+  if( is_array( $navHeadExplode ) &&  count( $navHeadExplode ) == 2 ){
+    $navType = trim( $navHeadExplode[0] );
+    $navValue = trim( $navHeadExplode[1] );
+    $listTitle = $navType . '“' . $navValue . '”';
+  }
+  ?>
+  <?php echo $listTitle;?> - {$Think.lang.description}
+  <?php endif;?>
+</block>
+<block name="keywords">
+  <meta name="keywords" content="<?php echo $navValue ? $navValue . ',' : '';?>{$Think.lang.keywords}"/>
+</block>
+<block name="description">
+  <meta name="description" content="<?php echo $listTitle ? $listTitle . ' - ' : '';?>{$Think.lang.description}"/>
+</block>
+<block name="css">
+  <link href="__CSS__/common/home/article.list.css" rel="stylesheet"/>
+</block>
+<block name="mainer">
+  <include file="Layout:notice"/>
+  <div id="mainer-nav" class="panel bg-white margin-large-bottom hidden-l">
+    <button class="button icon-navicon" data-target="#mainer-nav-ul"></button>
+    <ul id="mainer-nav-ul" class="nav nav-menu nav-inline nav-pills nav-right nav-navicon border-main">
+      <li class="nav-head text-big"><?php echo $navHead;?></li>
+      <?php
+      $filter = $listFilter;
+      $zan = intval( $filter['zan'] );
+      $cai = intval( $filter['cai'] );
+      unset( $filter['zan'], $filter['cai'] );
+      $query = array();
+      foreach ( $filter as $key => $value ) {
+        $query[] = 'form[' . $key . ']=' . $value;
+      }
+      $query = implode( '&', $query );
+      ?>
+      <li class="<?php echo 0 === $zan && 0 === $cai ? 'active' : '';?>"><a href="/?<?php echo $query;?>">最新</a></li>
+      <li class="<?php echo 1 === $zan ? 'active' : '';?>"><a href="/?<?php echo $query;?>&form[zan]=1">最赞</a></li>
+      <li class="<?php echo 1 === $cai ? 'active' : '';?>"><a href="/?<?php echo $query;?>&form[cai]=1">最烂</a></li>
+    </ul>
+  </div>
+  <div id="mainer-list">
+    <?php foreach( $articles['rows'] as $row ): ?>
+    <div class="panel">
+      <div class="panel-body">
+        <div class="record">
+          <span><?php echo $row['click_count'];?> Crowd.</span>
+          <span><span id="sourceId::<?php echo $row['id'];?>" class="cy_cmt_count">0</span> Slot.</span>
+          <span>Published in <?php echo date('Y/n/j H:i',$row['create_time']);?></span>
+        </div>
+        <h2>
+          <a href="/<?php echo $row['alias'];?>.html" title="<?php echo $row['title'];?>">
+            <?php echo $row['title'];?>
+          </a>
+        </h2>
+        <div class="element">
+          <?php if( !empty( $row['img'] ) ):?>
+          <a href="/<?php echo $row['alias'];?>.html" title="<?php echo $row['title'];?>">
+            <img src="<?php echo $row['img'];?>" alt="<?php echo $row['title'];?>"/>
+          </a>
+          <?php endif;?>
+          <div class="summary">
+            <?php echo empty( $row['img'] ) ? $row['summary'] : \Org\Util\String::msubstr( $row['summary'], 0, 90 ); ?>
+          </div>
+        </div>
+        <?php if( count( $row['tags'] ) > 0 ):?>
+        <div class="tags">
+          <?php foreach( $row['tags'] as $key => $tag ):?>
+          <a href="/<?php echo $tag;?>.html" title="<?php echo $tag;?>" <?php echo 0==$key ? 'style="margin-left:-5px;"' : '';?>><?php echo $tag;?></a>
+          <?php endforeach;?>
+        </div>
+        <?php endif;?>
+      </div>
+    </div>
+    <?php endforeach;?>
+    <?php $pager = $articles['pager'];?>
+    <include file="Layout:pager"/>
+  </div>
+</block>
+<block name="js">
+  <script id="cy_cmt_num" src="http://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cyrQc1GqU"></script>
+  <script src="__JS__/common/home/article.list.js"></script>
+</block>

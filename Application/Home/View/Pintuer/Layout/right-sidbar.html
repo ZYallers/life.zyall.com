@@ -1,0 +1,123 @@
+<div id="right-sidbar">
+  <?php $defImg = '__IMG__/avatar.png';?>
+  <div id="panel-new" class="panel">
+    <div class="panel-head bg-black text-white">
+      <span class="title">最新发布</span>
+      <span class="icon-chevron-down float-right"></span>
+    </div>
+    <div class="panel-body">
+      <div class="list-link bg-white">
+        <?php foreach($lasestRel as $row):?>
+        <a href="/<?php echo $row['alias'];?>.html" title="<?php echo $row['title'];?>">
+          <div class="media media-x">
+            <img class="img-rounded radius-circle bg-main float-left" src="<?php echo empty($row['img']) ? $defImg : $row['img'];?>" alt="<?php echo $row['title'];?>"/>
+            <div class="media-body padding-small-top overhide"><?php echo $row['title'];?></div>
+          </div>
+        </a>
+        <?php endforeach;?>
+      </div>
+    </div>
+  </div>
+  <div id="panel-hot" class="panel">
+    <div class="panel-head bg-black text-white">
+      <span class="title">热门推荐</span>
+      <span class="icon-chevron-down float-right"></span>
+    </div>
+    <div class="panel-body">
+      <div class="list-link bg-white">
+        <?php foreach($hotRec as $row):?>
+        <a href="/<?php echo $row['alias'];?>.html" title="<?php echo $row['title'];?>">
+          <div class="media media-x">
+            <img class="img-rounded radius-circle bg-main float-left" src="<?php echo empty($row['img']) ? $defImg : $row['img'];?>" alt="<?php echo $row['title'];?>"/>
+            <div class="media-body padding-small-top overhide"><?php echo $row['title'];?></div>
+          </div>
+        </a>
+        <?php endforeach;?>
+      </div>
+    </div>
+  </div>
+  <div id="panel-random" class="panel">
+    <div class="panel-head bg-black text-white" style="border-bottom: none;">
+      <span class="title">随机阅读</span>
+      <span class="icon-chevron-down float-right"></span>
+    </div>
+    <div class="panel-body">
+      <div class="list-link bg-white">
+        <?php foreach($randRead as $row):?>
+        <a href="/<?php echo $row['alias'];?>.html" title="<?php echo $row['title'];?>">
+          <div class="media media-x">
+            <img class="img-rounded radius-circle bg-main float-left" src="<?php echo empty($row['img']) ? $defImg : $row['img'];?>" alt="<?php echo $row['title'];?>"/>
+            <div class="media-body padding-small-top overhide"><?php echo $row['title'];?></div>
+          </div>
+        </a>
+        <?php endforeach;?>
+      </div>
+    </div>
+  </div>
+  <div id="cy-reping" class="panel" style="display: none;">
+    <div class="panel-head bg-black text-white">
+      <span class="title">最新评论</span>
+      <span class="icon-chevron-down float-right"></span>
+    </div>
+    <div class="panel-body bg-white">
+      <div id="cyReping" role="cylabs" data-use="reping"></div>
+    </div>
+  </div>
+  <div id="panel-tags" class="panel">
+    <div class="panel-head bg-black text-white">
+      <span class="title">热门标签</span>
+      <span class="icon-chevron-down float-right"></span>
+    </div>
+    <div class="panel-body bg-white">
+      <?php $colors = array('main','sub','green','red','gray');?>
+      <?php foreach($hotTag as $tag):?>
+      <?php $color = $colors[mt_rand(0,count($colors)-1)];?>
+      <a href="/<?php echo $tag['name'];?>.html" class="tips radius-rounded button button-small border-<?php echo $color;?>" data-toggle="hover" data-place="bottom"
+         title="<?php echo $tag['article_count'];?>篇文章，<?php echo $tag['click_count'];?>次点击" data-style="bg-<?php echo $color;?> border-<?php echo $color;?> text-white">
+        <?php echo $tag['name'];?>
+      </a>
+      <?php endforeach;?>
+    </div>
+  </div>
+  <div id="panel-links" class="panel">
+    <div class="panel-head bg-black text-white">
+      <span class="title">友情链接</span>
+      <span class="icon-chevron-down float-right"></span>
+    </div>
+    <div class="panel-body bg-white">
+      <?php $colors = array('main','sub','green','red','gray');?>
+      <?php foreach($friendlyLinks as $link):?>
+      <?php $color = $colors[mt_rand(0,count($colors)-1)];?>
+      <a href="<?php echo $link['href'];?>" target="_blank" data-id="<?php echo $link['id'];?>" class="tips button button-small radius-big border-<?php echo $color;?>" data-toggle="hover" data-place="bottom"
+         data-style="bg-<?php echo $color;?> border-<?php echo $color;?> text-white" title="<?php echo $link['name'];?><?php echo empty( $link['summary'] ) ? '' : '，'.$link['summary'];?>。<?php echo $link['click_count'];?>次点击">
+         <?php echo $link['name'];?>
+      </a>
+      <?php endforeach;?>
+      <!-- <a href="#" title="申请友链" class="button button-small radius-big border-black">申请友链</a> -->
+    </div>
+  </div>
+  <div id="cy-qing" class="panel" style="display: none;">
+    <div class="panel-head bg-black text-white">
+      <span class="title">吐槽站点</span>
+      <span class="icon-chevron-down float-right"></span>
+    </div>
+    <div class="panel-body bg-white">
+      <div id="cyQing" role="cylabs" data-use="qing" sid="21"></div>
+    </div>
+  </div>
+  <!-- 广告 -->
+  <!--
+  <div id="index-adv" class="panel">
+    <div class="panel-head bg-black text-white">
+      <span class="title">广告</span>
+      <span class="icon-chevron-down float-right"></span>
+    </div>
+    <div class="panel-body bg-white">
+      <a href="http://my.henghost.com/aff.php?aff=2230" target="_blank" title="香港Linux主机每月只需8元-恒创科技五年品牌">
+        <img src="__IMG__/adv/hengchuanghost2.png" style="width: 100%;" title="香港Linux主机每月只需8元-恒创科技五年品牌"/>
+      </a>
+    </div>
+  </div>
+  -->
+  <!-- 广告! -->
+</div>

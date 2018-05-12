@@ -1,0 +1,52 @@
+<IfModule mod_rewrite.c>
+  Options +FollowSymlinks
+  RewriteEngine On
+  # 在URL的尾部加上反斜杠似乎对SEO有利
+  #RewriteCond %{REQUEST_URI} /+[^\.]+$
+  #RewriteRule ^(.+[^/])$ %{REQUEST_URI}/ [R=301,L]
+  # 重定向没有www到有www的URL地址
+  RewriteCond %{HTTP_HOST} ^zyall\.com$
+  RewriteRule (.*) http://www.zyall.com/$1 [R=301,L]
+  # 重定向到入口文件
+  RewriteCond %{REQUEST_FILENAME} !-d
+  RewriteCond %{REQUEST_FILENAME} !-f
+  RewriteRule ^(.*)$ index.php/$1 [QSA,PT,L]
+</IfModule>
+
+<IfModule mod_expires.c>
+  <FilesMatch "\.(ico|pdf|flv)$">
+    ExpiresActive on
+    ExpiresDefault "access plus 1 years"
+  </FilesMatch>
+  <FilesMatch "\.(jpg|jpeg|png|gif|swf)$">
+    ExpiresActive on
+    ExpiresDefault "access plus 1 week"
+  </FilesMatch>
+  <FilesMatch "\.(xml|txt|css|js)$">
+    ExpiresActive on
+    ExpiresDefault "access plus 2 days"
+  </FilesMatch>
+  <FilesMatch "\.(html|htm|php)$">
+    ExpiresActive on
+    ExpiresDefault "access plus 1 minutes"
+  </FilesMatch>
+</IfModule>
+
+<IfModule mod_headers.c>
+  # 1 YEAR
+  <FilesMatch "\.(ico|pdf|flv)$">
+    Header set Cache-Control "max-age=29030400, public"
+  </FilesMatch>
+  # 1 WEEK
+  <FilesMatch "\.(jpg|jpeg|png|gif|swf)$">
+    Header set Cache-Control "max-age=604800, public"
+  </FilesMatch>
+  # 2 DAYS
+  <FilesMatch "\.(xml|txt|css|js)$">
+    Header set Cache-Control "max-age=172800, public"
+  </FilesMatch>
+  # 1 MIN
+  <FilesMatch "\.(html|htm|php)$">
+    Header set Cache-Control "max-age=60, private, proxy-revalidate"
+  </FilesMatch>
+</IfModule>

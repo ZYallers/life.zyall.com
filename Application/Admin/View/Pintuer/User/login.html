@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    <title><block name="title">{$Think.lang.userLogin}</block></title>
+    <include file="Layout:head"/>
+    <link href="__CSS__/lib/pintuer/pintuer.css" rel="stylesheet"/>
+    <link href="__CSS__/common/admin/user.login.css" rel="stylesheet"/>
+  </head>
+  <body class="bg-gray">
+    <div id="login-mainer" class="bg-white fadein-bottom">
+      <div class="text-center margin-big-bottom">
+        <a href="/" title="ZYaller"><img src="__IMG__/logo.png" alt="ZYaller" style="width: 180px;" class="bg-main radius-circle margin-bottom swing-hover"/></a>
+      </div>
+      <div class="alert alert-red padding margin-bottom text-default j-alert" style="display: none;">
+        <span class="icon-exclamation-triangle"></span>
+        <span></span>
+      </div>
+      <form method="post" action="/Admin/User/chkLogin" class="j-form">
+        <div class="form-group">
+          <div class="field">
+            <div class="input-group"><span class="addon icon-user"></span><input type="text" class="input input-big" name="account" size="20" placeholder="用户"/></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="field">
+            <div class="input-group"><span class="addon icon-lock"></span><input type="password" name="pwd" class="input input-big" size="20" placeholder="密码"/></div>
+          </div>
+        </div>
+        <div class="form-group login-barcode">
+          <div class="field">
+            <div class="input-group"><span class="addon icon-bar-chart-o"></span><input type="text" class="input input-big" name="verify" size="6" placeholder="验证码"/><img class="j-verify" data-url="Admin.User.verify" src="/Admin/User/verify?_=<?php echo time();?>" alt="验证码"/></div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="button" class="button button-big button-block bg-main   j-login">立即登录</button>
+        </div>
+      </form>
+      <div class="text-center margin-big-top text-gray2 text-small">
+        ©<?php echo date('Y'); ?>&nbsp;<a href="/">{$Think.lang.name}</a>&nbsp;版权所有&nbsp;<a href="http://www.miitbeian.gov.cn/" target="_blank">粤ICP备15018117号</a>
+      </div>
+    </div>
+    <script src="__JS__/lib/jquery/jquery-1.11.0.min.js"></script>
+    <script src="__JS__/lib/pintuer/pintuer.js"></script>
+    <script src="__JS__/lib/respond/respond-1.4.2.min.js"></script>
+    <script src="__JS__/common/admin/user.login.js"></script>
+  </body>
+</html>

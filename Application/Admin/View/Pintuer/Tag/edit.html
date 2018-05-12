@@ -1,0 +1,46 @@
+<extend name="Layout:base"/>
+<block name="title"><?php echo isset( $tag['id'] ) ? '编辑' : '新建';?>标签</block>
+<block name="bread">
+  <li><a href="/Admin/Tag/list" class="text-white">标签</a></li>
+  <li>新建</li>
+</block>
+<block name="content">
+  <div class="panel">
+    <div class="panel-head bg-main"><?php echo isset( $tag['id'] ) ? '编辑' : '新建';?>标签</div>
+    <div class="panel-body bg-white">
+      <form method="post" rel="form" action="/Admin/Tag/save">
+        <div class="form-group">
+          <div class="label"><span class="text-red icon-asterisk"></span><label for="name">名称</label></div>
+          <div class="field">
+            <input type="text" class="input" id="name" name="form[name]" placeholder="名称" value="<?php echo $tag['name'];?>"/>
+          </div>
+        </div>
+        <input type="hidden" id="id" name="form[id]" value="<?php echo $tag['id'];?>"/>
+      </form>
+    </div>
+    <div class="panel-foot text-center">
+      <button type="button" rel="submit" class="button bg-main">保 存</button>
+    </div>
+  </div>
+</block>
+<block name="js">
+  <script>
+    $( function () {
+      $( '[rel=submit]' ).on( 'click', function () {
+        var name = $.trim( $( '#name' ).val() );
+        if ( '' == name ) {
+          alert( '请输入名称！' );
+          return;
+        }
+        var except = parseInt( $( '#id' ).val() );
+        $.post( '/Admin/Tag/chkNameExist', {name: name, except: except}, function ( res ) {
+          if ( 0 == res.status ) {
+            $( '[rel=form]' ).get( 0 ).submit();
+          } else {
+            alert( res.msg );
+          }
+        }, 'json' );
+      } );
+    } );
+  </script>
+</block>

@@ -1,0 +1,22 @@
+<div id="left-sidbar" class="bg-black text-center">
+  <a href="/" target="_blank" title="{$Think.lang.title}" class="lsl">
+    <img title="{$Think.lang.title}" alt="{$Think.lang.title}" class="img-responsive radius-circle" src="__IMG__/logo.png"/>
+  </a>
+  <a href="javascript:void();" class="lsl button button-big radius-circle text-main border-black tips icon-user" 
+     data-toggle="hover" data-place="right" title="您好，ZYaller 管理员。" data-style="bg-main border-main"></a>
+  <a href="javascript:void();" class="lsl button button-big radius-circle text-main border-black tips icon-clock-o" 
+     data-toggle="hover" data-place="right" title="现在：<?php echo date('Y.m.d H:i:s');?>" data-style="bg-main border-main"></a>
+  <a href="/Admin/User/logout" class="lsl button button-big radius-circle text-main border-black tips icon-share" 
+     data-toggle="hover" data-place="right" title="安全退出" data-style="bg-main border-main"></a>
+  <a href="/Admin/Article/list" class="text-<?php echo 'Article'==CONTROLLER_NAME ? 'white' : 'gray';?> lsl button button-big radius-circle border-black margin-big-top tips" 
+     data-toggle="hover" data-place="right" title="文章" data-style="bg-main border-main">文</a>
+  <a href="/Admin/Category/list" class="text-<?php echo 'Category'==CONTROLLER_NAME ? 'white' : 'gray';?> lsl button button-big radius-circle border-black margin-top tips" 
+     data-toggle="hover" data-place="right" title="分类" data-style="bg-main border-main">类</a>
+  <a href="/Admin/Tag/list" class="text-<?php echo 'Tag'==CONTROLLER_NAME ? 'white' : 'gray';?> lsl button button-big radius-circle border-black margin-top tips" 
+     data-toggle="hover" data-place="right" title="标签" data-style="bg-main border-main">签</a>
+  <a href="/Admin/Link/list" class="text-<?php echo 'Link'==CONTROLLER_NAME ? 'white' : 'gray';?> lsl button button-big radius-circle border-black margin-top tips" 
+     data-toggle="hover" data-place="right" title="友链" data-style="bg-main border-main">友</a>
+  <a id="wap-hideleftbar" href="javascript:void();" class="lsl button button-big text-main radius-circle border-black icon-arrow-left"></a>
+  <a id="web-backtop" href="javascript:void();" title="返回顶部" data-toggle="hover" data-place="right" data-style="bg-main border-main"
+     class="win-backtop button button-big radius-circle text-main border-black tips icon-arrow-up"></a>
+</div>

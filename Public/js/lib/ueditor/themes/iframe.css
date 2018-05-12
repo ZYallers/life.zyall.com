@@ -1,0 +1,16 @@
+body{font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  font-size: 16px;height: 100%;}
+a{color: #0a8;text-decoration: none;cursor: pointer;}
+a:hover{color: #0ab;}
+div,p,ul,center{color: #333;padding: 0;margin: 0 0 30px 0;font-size: 16px;
+  font-family: "Lantinghei SC", "Open Sans", Arial, "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", "STHeiti", "WenQuanYi Micro Hei", SimSun, sans-serif;
+  line-height: 30.6px;word-break: break-word;}
+blockquote > p{margin-bottom: 0;}
+ul > li > p{margin-bottom: 15px;}
+img{border-radius: 6px;padding: 0px; height: auto;max-width: 100%;}
+pre[class*=brush]{
+  font: 14px Consolas,Menlo,Monaco,Lucida Console,Liberation Mono,DejaVu Sans Mono,Bitstream Vera Sans Mono,Courier New,monospace,serif;
+  line-height: 18px;background: #eee!important;padding: 5px!important;border-radius: 6px;
+  color: #000;white-space: pre-line;word-break: break-word;margin: 0 0 30px 0;
+}
+blockquote{border: solid 1px #ddd;border-left-width: 6px;padding: 20px;border-radius: 4px;margin: 0 0 30px 0;}

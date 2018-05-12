@@ -1,0 +1,60 @@
+<extend name="Layout:base"/>
+<block name="title"><?php echo isset( $link['id'] ) ? '编辑' : '新建';?>友链</block>
+<block name="bread">
+  <li><a href="/Admin/Category/list" class="text-white">友链</a></li>
+  <li>新建</li>
+</block>
+<block name="content">
+  <div class="panel">
+    <div class="panel-head bg-main"><?php echo isset( $link['id'] ) ? '编辑' : '新建';?>友链</div>
+    <div class="panel-body bg-white">
+      <form method="post" rel="form" action="/Admin/Link/save">
+        <div class="form-group">
+          <div class="label"><span class="text-red icon-asterisk"></span><label for="name">名称</label></div>
+          <div class="field">
+            <input type="text" class="input" id="name" name="form[name]" placeholder="名称" value="<?php echo $link['name'];?>"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label"><span class="text-red icon-asterisk"></span><label for="href">链接地址</label></div>
+          <div class="field">
+            <input type="text" class="input" id="href" name="form[href]" placeholder="链接" value="<?php echo $link['href'];?>"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">LOGO地址</label></div>
+          <div class="field">
+            <input type="text" class="input" id="logo" name="form[logo]" placeholder="LOGO地址" value="<?php echo $link['logo'];?>"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label"><label for="summary">简介</label></div>
+          <div class="field">
+            <textarea class="input" rows="5" id="summary" name="form[summary]" placeholder="简介"><?php echo $link['summary'];?></textarea>
+          </div>
+        </div>
+        <input type="hidden" name="form[id]" value="<?php echo $link['id'];?>"/>
+      </form>
+    </div>
+    <div class="panel-foot text-center">
+      <button type="button" rel="submit" class="button bg-main">保 存</button>
+    </div>
+  </div>
+</block>
+<block name="js">
+  <script>
+    $( function () {
+      $( '[rel=submit]' ).on( 'click', function () {
+        if ( '' == $.trim( $( '#name' ).val() ) ) {
+          alert( '请输入名称！' );
+          return;
+        }
+        if ( '' == $.trim( $( '#href' ).val() ) ) {
+          alert( '请输入链接地址！' );
+          return;
+        }
+        $( '[rel=form]' ).get( 0 ).submit();
+      } );
+    } );
+  </script>
+</block>

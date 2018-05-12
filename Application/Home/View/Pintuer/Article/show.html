@@ -1,0 +1,85 @@
+<extend name="Layout:base"/>
+<block name="title">
+  <?php echo $art['title'];?> - {$Think.lang.description}
+</block>
+<block name="keywords">
+  <meta name="keywords" content="<?php echo implode(',',$art['tags']);?>,{$Think.lang.keywords}"/>
+</block>
+<block name="description">
+  <meta name="description" content="<?php echo $art['title'];?> - {$Think.lang.description}"/>
+</block>
+<block name="css">
+  <link href="__CSS__/common/home/article.show.css" rel="stylesheet"/>
+</block>
+<block name="mainer">
+  <div id="mainer-list">
+    <div id="article" class="panel">
+      <div class="panel-body">
+        <h2><a href="/<?php echo $art['alias']; ?>.html"><?php echo $art['title'];?></a></h2>
+        <div class="record">
+          <span>Published in <?php echo date('Y/n/j H:i',$art['create_time']); ?>.</span>
+          <span><?php echo intval($art['click_count'])+1; ?> Crowd.</span>
+          <span><a href="#SOHUCS" id="changyan_count_unit" class="text-gray2">0</a> Slot</span>
+        </div>
+        <div class="tags">
+          <?php foreach( $art['tags'] as $key => $tag ):?>
+          <a href="/<?php echo $tag; ?>.html" title="<?php echo $tag; ?>" <?php echo 0==$key ? 'style="margin-left:-5px;"' : '';?>><?php echo $tag;?></a>
+          <?php endforeach;?>
+        </div>
+        <div id="content"><?php echo $art['content'];?></div>
+        <div class="endline"><img src="__IMG__/content-end.jpg"/></div>
+        <div id="cyReward" class="text-center padding-big-top" role="cylabs" data-use="reward"></div>
+        <div class="padding-big-top padding-big-bottom text-center">
+          <button id="zan-btn" data-type="4" class="button border-red radius-rounded badge-corner icon-thumbs-up margin-small-right">
+            <span>赞一个</span><span class="badge bg-red">&nbsp;<?php echo $art['zan_count'];?>&nbsp;</span>
+          </button>-  
+          <button id="cai-btn" data-type="5" class="button border-black radius-rounded badge-corner icon-thumbs-down">
+            <span>踩一下</span><span class="badge bg-black">&nbsp;<?php echo $art['cai_count'];?>&nbsp;</span>
+          </button>
+        </div>
+        <div id="qrcode-cutline" class="cutline" style="display: none;"><span>扫码阅读</span></div>
+        <div id="qrcode"></div>
+        <div class="bdsharebuttonbox" style="display: none;">
+          <a title="分享到新浪微博" href="javascript:void(0);" class="bds_tsina" style="margin-left: -5px;"  data-cmd="tsina">新浪微博</a>
+          <a title="分享到腾讯微博" href="javascript:void(0);" class="bds_tqq" data-cmd="tqq">腾讯微博</a>
+          <a title="分享到微信" href="javascript:void(0);" class="bds_weixin" data-cmd="weixin">微信</a>
+          <a title="分享到QQ空间" href="javascript:void(0);" class="bds_qzone" data-cmd="qzone">QQ空间</a>
+          <a title="分享到人人网" href="javascript:void(0);" class="bds_renren" data-cmd="renren">人人网</a>
+        </div>
+        <!-- 广告 -->
+        <!--
+        <div class="cutline" style="margin-top: 30px;"><span>广告</span></div>
+        <div id="show-adv" style="margin-top: 20px;">
+         <a href="http://my.henghost.com/aff.php?aff=2230" target="_blank" title="香港Linux主机每月只需8元-恒创科技五年品牌">
+          <img src="__IMG__/adv/hengchuanghost.png" style="width: 100%;"/>
+         </a>
+        </div>
+        -->
+        <!-- 广告! -->
+        <div>
+         <input type="hidden" id="art_id" value="<?php echo $art['id'];?>"/>
+	 <input type="hidden" id="img" value="<?php echo $art['img'];?>"/>
+	 <input type="hidden" id="alias" value="<?php echo $art['alias'];?>"/>
+	 <input type="hidden" id="summary" value="<?php echo $art['summary'];?>"/>
+        </div>
+      </div>
+    </div>
+    <div id="comment" class="panel">
+      <div class="panel-head">畅言评论</div>
+      <div class="panel-body">
+        <div id="SOHUCS" sid="<?php echo $art['id'];?>">
+          <span class="icon-spinner rotate"></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</block>
+<block name="js">
+  <script>window.JS_ROOT = '__JS__';</script>
+  <script src="__JS__/common/home/article.show.js"></script>
+  <script src="http://changyan.sohu.com/upload/changyan.js" ></script>
+  <script>window.changyan.api.config({appid: 'cyrQc1GqU',conf: 'prod_05b4a51c8e3dc1dc82a05f867938e154'});</script>
+  <script src="http://assets.changyan.sohu.com/upload/plugins/plugins.count.js"></script>
+  <script src="http://changyan.itc.cn/js/lib/jquery.js"></script>
+  <script src="https://changyan.sohu.com/js/changyan.labs.https.js?appid=cyrQc1GqU"></script>
+</block>

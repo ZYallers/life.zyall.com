@@ -1,0 +1,83 @@
+<extend name="Layout:base"/>
+<block name="title">分类管理</block>
+<block name="bread">
+  <li><a href="/Admin/Category/list" class="text-white">分类</a></li>
+  <li>列表</li>
+</block>
+<block name="content">
+  <div class="panel">
+    <div class="panel-head">
+      <form action="/Admin/Category/list" class="form-inline" method="get">
+        <div class="form-group">
+          <div class="field">
+            <div class="input-group">
+              <span class="addon">名称</span><input type="text" class="input" name="form[name]" placeholder="名称" value="<?php echo $form['name'];?>"/>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="button">搜索</button>&nbsp;
+          <a href="/Admin/Category/edit" class="button bg-green">新增</a>
+        </div>
+      </form>
+    </div>
+    <div class="panel-body bg-white">
+      <table class="table table-hover">
+        <tr>
+          <th>ID</th>
+          <th>名称</th>
+          <th class="hidden-l">别名</th>
+          <th class="hidden-l">点击</th>
+          <th>文章</th>
+          <th>侧栏</th>
+          <th class="hidden-l">创建</th>
+          <th class="hidden-l">更新</th>
+          <th>操作</th>
+        </tr>
+        <?php $Hashids = new \Org\Hashids\Hashids();?>
+        <?php foreach( $categorys['rows'] as $row ):?>
+        <?php $code = $Hashids->encode( $row['id'] );?>
+        <tr>
+          <td><?php echo $row['id'];?></td>
+          <td><a href="/Admin/Category/edit?code=<?php echo $code;?>"><?php echo $row['name'];?></a></td>
+          <td class="hidden-l"><?php echo $row['alias'];?></td>
+          <td class="hidden-l"><?php echo $row['click_count'];?></td>
+          <td class="hidden-l"><?php echo $row['article_count'];?></td>
+          <td class="hidden-l"><?php echo 1==$row['menu'] ? '是' : '否';?></td>
+          <td class="hidden-l"><?php echo date('y-m-d H:i',$row['create_time']);?></td>
+          <td class="hidden-l"><?php echo date('y-m-d H:i',$row['update_time']);?></td>
+          <td>
+            <a href="/Admin/Category/edit?code=<?php echo $code;?>" class="icon-pencil-square" title="编辑"></a>
+            <a href="javascript:void(0);"  data-code="<?php echo $code;?>" rel="cate-del" class="icon-times-circle" title="删除"></a>
+          </td>
+        </tr>
+        <?php endforeach;?>
+      </table>
+    </div>
+    <div class="panel-foot">
+      <?php $pager = $categorys['pager'];?>
+      <include file="Layout:pager"/>
+    </div>
+  </div>
+</block>
+<block name="js">
+  <script>
+    $( function () {
+
+      //删除分类
+      $( '[rel=cate-del]' ).on( 'click', function () {
+        if ( window.confirm( '确定删除吗？' ) ) {
+          var self = this;
+          $.post( '/Admin/Category/delete', {code: $( self ).data( 'code' )}, function ( res ) {
+            if ( res.status > 0 ) {
+              $( self ).parent().parent().remove();
+            } else {
+              alert( res.msg );
+            }
+          } );
+        }
+      } );
+
+    } );
+  </script>
+</block>

@@ -1,0 +1,112 @@
+<extend name="Layout:base"/>
+<block name="title">文章管理</block>
+<block name="bread">
+  <li><a href="/Admin/Article/list" class="text-white">文章</a></li>
+  <li>列表</li>
+</block>
+<block name="content">
+  <div class="panel">
+    <div class="panel-head">
+      <form action="/Admin/Article/list" class="form-inline" method="get">
+        <div class="form-group">
+          <div class="field">
+            <div class="input-group">
+              <span class="addon">标题</span><input type="text" class="input" name="form[title]" placeholder="标题" value="<?php echo $form['title'];?>"/>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="field">
+            <div class="input-group">
+              <span class="addon">分类</span>
+              <select class="input" name="form[category_id]">
+                <option value="0">分类</option>
+                <?php foreach($categorys as $key => $val ):?>
+                <option <?php echo $form['category_id']==$key ? 'selected' : '';?> value="<?php echo $key;?>"><?php echo $val;?></option>
+                <?php endforeach;?>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="field">
+            <div class="input-group">
+              <span class="addon">状态</span>
+              <select class="input" name="form[status]">
+                <option value="0">状态</option>
+                <option <?php echo 1==$form['status'] ? 'selected' : '';?> value="1">已发布</option>
+                <option <?php echo 2==$form['status'] ? 'selected' : '';?> value="2">存草稿</option>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <button type="submit" class="button">搜索</button>&nbsp;
+          <a href="/Admin/Article/edit" class="button bg-green">新增</a>
+        </div>
+      </form>
+    </div>
+    <div class="panel-body bg-white">
+      <table class="table table-hover">
+        <tr>
+          <th>ID</th>
+          <th>标题</th>
+          <th class="hidden-l">别名</th>
+          <th class="hidden-l">分类</th>
+          <th class="hidden-l">状态</th>
+          <th class="hidden-l">浏览</th>
+          <th class="hidden-l">赞</th>
+          <th class="hidden-l">踩</th>
+          <th class="hidden-l">创建</th>
+          <th class="hidden-l">更新</th>
+          <th>操作</th>
+        </tr>
+        <?php $Hashids = new \Org\Hashids\Hashids();?>
+        <?php foreach( $articles['rows'] as $row ):?>
+        <?php $code = $Hashids->encode( $row['id'] );?>
+        <tr>
+          <td><?php echo $row['id'];?></td>
+          <td><a href="/Admin/Article/edit?code=<?php echo $code;?>"><?php echo $row['title'];?></a></td>
+          <td class="hidden-l"><?php echo $row['alias'];?></td>
+          <td class="hidden-l"><?php echo $categorys[$row['category_id']];?></td>
+          <td class="hidden-l"><?php echo 1==$row['status'] ? '发布' : '草稿';?></td>
+          <td class="hidden-l"><?php echo $row['click_count'];?></td>
+          <td class="hidden-l"><?php echo $row['zan_count'];?></td>
+          <td class="hidden-l"><?php echo $row['cai_count'];?></td>
+          <td class="hidden-l"><?php echo date('y-m-d H:i',$row['create_time']);?></td>
+          <td class="hidden-l"><?php echo date('y-m-d H:i',$row['update_time']);?></td>
+          <td>
+            <a href="/Admin/Article/edit?code=<?php echo $code;?>" class="icon-pencil-square" title="编辑"></a>
+            <a href="javascript:void(0);"  data-code="<?php echo $code;?>" rel="art-del" class="icon-times-circle" title="删除"></a>
+          </td>
+        </tr>
+        <?php endforeach;?>
+      </table>
+    </div>
+    <div class="panel-foot">
+      <?php $pager = $articles['pager'];?>
+      <include file="Layout:pager"/>
+    </div>
+  </div>
+</block>
+<block name="js">
+  <script>
+    $( function () {
+
+      //删除文章
+      $( '[rel=art-del]' ).on( 'click', function () {
+        if ( window.confirm( '确定删除吗？' ) ) {
+          var self = this;
+          $.post( '/Admin/Article/delete', {code: $( self ).data( 'code' )}, function ( res ) {
+            if ( res.status > 0 ) {
+              $( self ).parent().parent().remove();
+            } else {
+              alert( res.msg );
+            }
+          } );
+        }
+      } );
+
+    } );
+  </script>
+</block>

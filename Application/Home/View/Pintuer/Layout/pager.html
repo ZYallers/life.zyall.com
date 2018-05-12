@@ -1,0 +1,39 @@
+<div id="pager">
+  <?php
+    $page = $pager['page'];
+    $limit = $pager['limit'];
+    $total = $pager['total'];
+    $pages = $total > 0 ? ceil( $total / $limit ) : 1;;
+    $url = $pager['url'];
+    $query = array();
+    foreach( $pager['query'] as $key => $val ){
+      $query[] = 'form[' . $key . ']=' . $val;
+    }
+    $query = implode( '&', $query );
+    !empty( $query ) && $query = '&' . $query;
+    
+    $links = 3; //链接数量
+    $start = max( 1, $page - intval( $links / 2 ) ); 
+    $end = min( $start + $links - 1, $pages ); 
+    $start = max( 1, $end - $links + 1 ); 
+  ?>
+  <ul class="pagination pagination-big">
+    <?php if( $page > 1 ):?>
+    <li><a href="/<?php echo $url . '?page= ' . ( $page - 1 ) . $query;?>"><span class="icon-angle-left"></span></a></li>
+    <?php endif;?>
+    <?php if( $page > 3 ):?>
+    <li><a href="/<?php echo $url . '?page=1' . $query;?>">1 ...</a></li>
+    <?php endif;?>
+    <?php for( $i = $start; $i <= $end; $i++ ): ?>
+    <li class="<?php echo $i == $page ? 'active' : ''; ?>">
+      <a href="/<?php echo $url . '?page=' . $i . $query;?>"><?php echo $i; ?></a>
+    </li>
+    <?php endfor; ?>
+    <?php if( $page < $pages - 3 ):?>
+    <li><a href="/<?php echo $url . '?page=' . $pages . $query;?>">... <?php echo $pages;?></a></li>
+    <?php endif;?>
+    <?php if( $page < $pages ):?>
+    <li><a href="/<?php echo $url . '?page= ' . ( $page + 1 ) . $query;?>"><span class="icon-angle-right"></span></a></li>
+    <?php endif;?>
+  </ul>
+</div>
